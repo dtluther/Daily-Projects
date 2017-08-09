@@ -1,76 +1,27 @@
-module SlidingPiece
-
-  HORIZONTAL = [
-    [1,0],
-    [-1,0]
-  ]
-
-  VERTICAL = [
-    [0, 1],
-    [0, -1]
-  ]
-
-  DIAGONAL = [
-    [1,1],
-    [1, -1],
-    [-1, -1],
-    [-1, 1]
-  ]
-
-
-  def move_dirs
-  end
-
-end
+require 'byebug'
+require 'colorize'
+require_relative 'pieces'
 
 class Piece
-  attr_reader :type
+  attr_reader :type, :board, :code, :color
+  attr_accessor :pos
 
-  def initialize(type)
-    @type = type
+  def initialize(pos, board, code, color)
+    @pos = pos
+    @board = board
+    @code = code
+    @color = color
   end
 
   def to_s
-    @type.to_s
-  end
-end
-
-class NullPiece < Piece
-
-  def initialize
-    super("-")
+    symbol.to_s
   end
 
-end
-
-class King < Piece
-end
-
-class Queen < Piece
-  include SlidingPiece
-end
-
-class Bishop < Piece
-  include SlidingPiece
-
-  def move_dirs
-    # only diagonally (increase/decrease x and y by the same amount)
+  def symbol
+    code.encode('utf-8')
   end
 
-end
-
-class Knight < Piece
-
-end
-
-class Rook < Piece
-  include SlidingPiece
-
-  def move_dirs
-    # Move horizontally or vertically
+  def call_moves
+    moves
   end
-
-end
-
-class Pawn < Piece
 end
