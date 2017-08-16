@@ -1,0 +1,9 @@
+kelly = User.new('fname' => 'Kelly', 'lname' => 'Chung')
+
+q = Question.new({'title'=> '???', 'body'=> 'What\'s up?', 'author_id'=> 3})
+
+qf = QuestionFollow.new('follower_id' => 2, 'question_id' => 2)
+
+r = Reply.new('user_id' => '1', 'body' => 'some body', 'question_id' => '2', 'parent_reply_id' => '3')
+
+ql = QuestionLike.new('question_id' => '2, 'liked' => 'true',  'user_id' => '3')
