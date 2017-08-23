@@ -1,0 +1,37 @@
+<h1>HI I'm the form page for cat#edit</h1>
+
+<form action= "<%= edit_cat_url(@cat)  %>" method="post">
+  <input type="hidden" name="_method" value="PATCH">
+  <label for="name">Name</label>
+  <input id="name" type="text" name="cat[name]" value="<%= @cat.name %>">
+
+  <br>
+
+  <label for="birth_date">Birthday</label>
+  <input id=birth_date type="date" name="cat[birth_date]" value="<%= @cat.birth_date %>">
+
+  <br>
+
+  <label for="color">Color</label>
+  <select name="cat[color]" id="color">
+    <option disabled selected><%= @cat.color %></option>
+    <% Cat::COLORS.each do |color| %>
+      <option><%= color %></option>
+    <% end %>
+  </select>
+
+  <br>
+
+  <label for="genderchoice1">Male</label>
+  <input id="sex" type="radio" name=cat[sex]>
+  <label for="genderchoice2">Female</label>
+  <input id="sex" type="radio" name=cat[sex]>
+
+  <br>
+
+  <label for="description">Description</label>
+  <textarea name="cat[description]" id="description" value=<%= @cat.description %>></textarea>
+
+  <input type="submit" value="Submit Cat">
+
+</form>
