@@ -1,7 +1,7 @@
 class ArtworksController < ApplicationController
 
   def index
-    @artworks = Artwork.all
+    @artworks = Artwork.find_by(artist_id: params[:artist_id])
     render json: @artworks
   end
 
@@ -10,17 +10,17 @@ class ArtworksController < ApplicationController
     if artwork.save
       render json: artwork
     else
-      render json: artwork.erros.full_messages, status: :unprocessable_entity
+      render json: artwork.errors.full_messages, status: :unprocessable_entity
     end
   end
 
   def show
-    artwork = Artwork.find(params[:id])
+    artwork = Artwork.find_by(id: params[:id])
     render json: artwork
   end
 
   def update
-    artwork = Artwork.find(params[:id])
+    artwork = Artwork.find_by(id: params[:id])
     if artwork.update_attributes(artwork_params)
       render json: artwork
     else
@@ -29,7 +29,7 @@ class ArtworksController < ApplicationController
   end
 
   def destroy
-    artwork = Artwork.find(params[:id])
+    artwork = Artwork.find_by(id: params[:id])
     artwork.destroy
     render json: artwork
   end
