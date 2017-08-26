@@ -1,0 +1,6 @@
+<h1>The users index page!!</h1>
+
+<% @users.each do |user| %>
+  <%= link_to "#{user.email}", user_url(user.id) %>
+  <br>
+<% end %>
