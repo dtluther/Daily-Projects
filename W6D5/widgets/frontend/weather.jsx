@@ -62,7 +62,7 @@ class Weather extends React.Component {
     // wReq.open(
     //   "GET",
     //   `http://api.openweathermap.org/data/2.5/weather?lat=${this
-    //     .latitude}&lon=${this.longitude}&appid=9c6b279f1c36ece02e7dcff91eb6f67c`
+    //     .latitude}&lon=${this.longitude}&appid=${api_weather}`
     // );
     // wReq.send();
   }
