@@ -1,0 +1,57 @@
+div {
+  margin: 25px auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  max-width: 700px
+
+}
+
+section {
+  width: 600px;
+}
+
+.timedate,
+.citytemp {
+  border: 3px solid dimgray;
+  border-radius: 10px;
+  font-family: "Orbitron", sans-serif;
+  display: flex;
+  justify-content: space-between;
+  padding: 15px;
+  font-size: 28px;
+}
+
+p {
+  margin: 5px 0;
+}
+
+.timedate {
+  background-color: orange;
+}
+
+.citytemp {
+  background-color: lightgreen;
+}
+
+.auto {
+  padding: none;
+  text-align: center;
+  background-color: lightblue;
+  width: 250px;
+  border: 3px solid dimgray;
+  border-radius: 10px;
+  font-family: "Orbitron", sans-serif;
+}
+
+.auto ul {
+  padding: 0;
+  cursor: pointer;
+  list-style: none;
+}
+
+
+.auto .searchname {
+  border: 1px solid dimgray;
+  border-radius: 3px;
+}
