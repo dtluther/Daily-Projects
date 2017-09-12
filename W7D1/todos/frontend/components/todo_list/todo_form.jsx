@@ -1,23 +1,31 @@
-import React from 'react';
-import uniqueId from '../../util/api_util';
+import React from "react";
+import uniqueId from "../../util/api_util";
 
 class TodoForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { id: uniqueId, title: '', body: '', done: false };
+
+    this.state = { title: "", body: "", done: false };
+
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   updateInput(key) {
-    console.log();
-    return (event => {
-      this.setState({[key]: event.currentTarget.value});
+    return event => {
+      this.setState({ [key]: event.target.value });
       console.log(this.state);
-    });
+    };
   }
 
   handleSubmit(e) {
     e.preventDefault();
-    this.props.bind(this).receiveTodo(this.state);
+    const todo = Object.assign({}, this.state, { id: uniqueId() });
+    this.props.receiveTodo(todo);
+    // reset form
+    this.setState({
+      title: "",
+      body: ""
+    });
   }
 
   render() {
@@ -25,20 +33,18 @@ class TodoForm extends React.Component {
     const body = this.state.body;
     const done = this.state.done;
     return (
-      <form onSubmit={this.handleSubmit}>
+      <form className="todo-form" onSubmit={this.handleSubmit}>
         <label>
           Title:
-          <input onChange={this.updateInput('title')} value={title}></input>
+          <input onChange={this.updateInput("title")} value={title} required />
         </label>
+        <br />
         <label>
           Body:
-          <input onChange={this.updateInput('body')} value={body}></input>
+          <textarea onChange={this.updateInput("body")} value={body} required />
         </label>
-        <label>
-          Done:
-          <input onChange={this.updateInput('done')} value={done}></input>
-        </label>
-        <button>Submit!</button>
+        <br />
+        <button className="create-button">Create Todo!</button>
       </form>
     );
   }
