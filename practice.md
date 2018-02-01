@@ -6,13 +6,22 @@
 * How to benchmark something
 * SSH
 * Timing function for controller
+    * **Filters** are mthods that run "before", "after", or "around" a controller action.
+        * They are inherited from ApplicationController, so if we set filters on Application controller, it will be run on every controller in the application.
+        * Before filters may halt the request cycle, such as happens in the case of `before_action :require_login` if the user isn't logged in (and we have a `require_login`).
 * create
 * create bang
 * Write create function
-* ActiveRecord lifecycles
+* ActiveRecord lifecycle callbacks
+    * Section will be below
 * Blocks, Procs, and Lambdas
+    * Notes below
 * What does fail loudly mean?
 * What does a model or controller inherit from in Rails? What is the module and class doing that it inherits from?
+    * Model inherits from `ApplicationRecord`
+        * `ApplicationRecord` inherits from `ActiveRecord::Base`. `ActiveRecord` is a module which has the `Base` class in it. `Base` consists of extensions of other classes as well as including other modules, like `Associations`, `Attributes`, and `Validations`
+    * Applications inherit from `ApplicationController`
+        * ApplicationController inherits from `ActionController::Base`. `ActionController` is a module that extends `ActiveSupport::Autoload` and autoloads `:Base`.
 * How to create your own gem?
 * Headless request from the backend?
 
@@ -232,3 +241,10 @@ http://www.rubyguides.com/2016/02/ruby-procs-and-lambdas/
             ```
 * Addtitional things to learn:
     * There is also a `curry` method for Ruby, apparently (which I think makes sense now knowing that a proc is similar to a callback in JS?)
+
+### Active Record Callbacks
+
+#### Available Callbacks
+A list of the available Active Record callbacks listed in the order in which they get called during their respective operations:
+    * Creating and object:
+        * `before_validation`
