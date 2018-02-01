@@ -210,4 +210,25 @@ http://www.rubyguides.com/2016/02/ruby-procs-and-lambdas/
             # 1
             ```
             * The proc remembers the local count variable and takes that scope into the method where it's called.
-    * The `Binding` class:
+    * The `Binding` class: where lambdas and procs store this scope information.
+        * Creating a `Binding` object via the `binding` method creates an "binding" to thid point in the code; every variable, method, and class at this bound point will be available later via this `Binding` object, even if we are in a completely different scope.
+            ```
+            def return_binding
+                foo = 100
+                binding
+            end
+
+            return_binding.class
+            # => Binding
+            return_binding.eval('foo')
+            # => 100
+
+            def no_binding
+                foo = 100
+            end
+
+            no_binding.eval('foo')
+            # NoMethodError: private method 'eval' called for 100:Fixnum
+            ```
+* Addtitional things to learn:
+    * There is also a `curry` method for Ruby, apparently (which I think makes sense now knowing that a proc is similar to a callback in JS?)
